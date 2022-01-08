@@ -1,0 +1,43 @@
+name: Deploy CDK Build and Deploy Gatsby Website + Contentfull to S3
+
+on:
+  push:
+    branches: [ main ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/checkout@v2
+
+      - name: Install npm
+        run: |
+          sudo apt update -y
+          sudo apt install nodejs npm -y
+
+      - name: Build Website
+        run: 'sudo npm run build'
+
+      - name: Configure AWS credentials for CDK
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-acces-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1 
+        
+      - name: Install AWS CDK
+        run : 'sudo npm install -g aws-cdk'
+      
+      - name: CDK Bootstrap
+        run : cdk bootstrap
+        working-directory: cdk
+
+      - name: CDK Synth
+        run : cdk deploy
+        working-directory: cdk
+
+      - name: CDK Deploy
+        run : cdk deploy
+        working-directory: cdk
