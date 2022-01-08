@@ -18,7 +18,9 @@ jobs:
           sudo apt install nodejs npm -y
 
       - name: Build Website
-        run: 'sudo npm run build'
+        run: |
+          yarn
+          npm run build
 
       - name: Configure AWS credentials for CDK
         uses: aws-actions/configure-aws-credentials@v1
