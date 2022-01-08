@@ -18,6 +18,9 @@ jobs:
           sudo apt install nodejs npm -y
 
       - name: Build Website
+        env:
+          space_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          managment_AOI_KEY: ${{ secrets.CONTENT_MANAGMENT_API }}      
         run: |
           yarn
           npm run build
