@@ -17,7 +17,7 @@ export class CdkStack extends cdk.Stack {
 
     // Deployment
     const src = new s3deploy.BucketDeployment(this, "DeployToS3", {
-      sources: [s3deploy.Source.asset("../alpacked-test/public")],
+      sources: [s3deploy.Source.asset("../public")],
       destinationBucket: bucket
     });
 

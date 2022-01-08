@@ -21,8 +21,8 @@ jobs:
         uses: contentful/contentful-action@v1
         env:
           space_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-          managment_API_KEY: ${{ secrets.CONTENT_MANAGMENT_API }}      
-          accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          managment_API_KEY: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}      
+          accessToken: ${{ secrets.CONTENT_MANAGMENT_API }}
 
       - name: Bild Website
         run : |
