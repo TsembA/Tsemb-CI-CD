@@ -2,7 +2,7 @@ name: Deploy CDK Build and Deploy Gatsby Website + Contentfull to S3
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 
 jobs:
