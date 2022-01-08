@@ -18,7 +18,7 @@ jobs:
           sudo apt install nodejs npm -y
 
       - name: Build Website
-        usese: contentful/contentful-action@v1
+        uses: contentful/contentful-action@v1
         env:
           space_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           managment_AOI_KEY: ${{ secrets.CONTENT_MANAGMENT_API }}      
