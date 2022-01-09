@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Website
         uses: actions/checkout@v2
-        run : |
+      - run : |
           npm run ci
           npm rub build
           
