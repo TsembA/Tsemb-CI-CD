@@ -18,7 +18,6 @@ jobs:
           sudo apt install nodejs npm -y
 
       - name: Configure Contentful credentials 
-      - uses: actions/checkout@v2
         with:
           accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
         run : |
