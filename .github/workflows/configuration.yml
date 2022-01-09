@@ -9,15 +9,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:      
-      - uses: actions/checkout@v2
-      - name: Build Website
-        with:
-          space_Id: ${{ secrets.CONTENTFUL_SPACE_ID }}
-          access_token: $ {{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-      -name : Run Build
-      - run : |
-          yarn
-          npm run build
+    - uses: actions/checkout@v2
+    - name: Build Website
+      with:
+        space_Id: ${{ secrets.CONTENTFUL_SPACE_ID }}
+        access_token: $ {{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+    - name : Run Build
+      run : |
+        yarn
+        npm run build
           
       - name: Configure AWS credentials for CDK
         uses: aws-actions/configure-aws-credentials@v1
