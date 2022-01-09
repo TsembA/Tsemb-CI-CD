@@ -22,7 +22,8 @@ jobs:
 
 
       - name: Build Website
-        with: 
+        uses: contentful/contenful-actions@v2.1.1
+        env: 
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
