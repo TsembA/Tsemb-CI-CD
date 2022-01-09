@@ -21,9 +21,7 @@ jobs:
       - uses: TsembA/gatsby-gh-pages-action@v2.1.1
         with:
           accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-          deploy-branch: master
-      
-      - name: Build gatsby
+          deploy-branch: master          
         run : |
           yarn
           npm run build
