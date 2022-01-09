@@ -15,6 +15,7 @@ jobs:
       run : sudo npm install
 
     - name: Build
+      run : npm build
       env:
         SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
         AUTH_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
