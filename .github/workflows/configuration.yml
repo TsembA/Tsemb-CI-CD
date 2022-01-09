@@ -22,7 +22,7 @@ jobs:
           yarn
       
       - name: Deploy Contentful
-        uses: contentful/contenful-action@master
+        uses: contentful/contenful-action@v1
         env :
           SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           MANAGMENT_API_KEY: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
