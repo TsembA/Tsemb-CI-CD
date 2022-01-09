@@ -24,7 +24,7 @@ jobs:
       - name: Build Website
         uses: actions/checkout@v2
       - run : |
-          npm rub build
+          npm run build
           
       - name: Configure AWS credentials for CDK
         uses: aws-actions/configure-aws-credentials@v1
