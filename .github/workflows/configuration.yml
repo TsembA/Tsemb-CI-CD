@@ -18,14 +18,15 @@ jobs:
           sudo apt install nodejs npm -y
 
       - name: Configure Contentful credentials 
+
+
+      - name: Bild Website
         uses: contentful/contentful-action@v1
-        env:
+        with:
           space_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           managment_API_KEY: ${{ secrets.CONTENT_MANAGMENT_API }}      
           accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-
-      - name: Bild Website
-        run : |
+      - run : |
           yarn
           npm run build
 
