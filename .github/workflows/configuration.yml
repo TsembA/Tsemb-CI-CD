@@ -12,6 +12,9 @@ jobs:
       
       - uses: actions/checkout@v2
       - name: Build Website
+        with:
+          space_Id: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          access_token: $ {{ secrets.CONTENTFUL_ACCESS_TOKEN }}
         run : |
           yarn
           npm run build
