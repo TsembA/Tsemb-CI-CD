@@ -22,7 +22,6 @@ jobs:
         SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
         AUTH_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
-    - uses: actions/checkout@v2
     - name: Configure AWS credentials for CDK
       uses: aws-actions/configure-aws-credentials@v1
       with:
