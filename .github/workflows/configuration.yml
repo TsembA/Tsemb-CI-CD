@@ -22,7 +22,9 @@ jobs:
         with:
           accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
           deploy-branch: master
-      - run : |
+      
+      - name: Build gatsby
+        run : |
           yarn
           npm run build
 
