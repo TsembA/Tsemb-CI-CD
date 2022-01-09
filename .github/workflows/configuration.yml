@@ -34,7 +34,7 @@ jobs:
       run : 'sudo apt update -y && sudo apt install nodejs npm -y'
 
     - name: Install AWS CDK
-      run : 'sudo npm install -g aws-cdk'
+      run : 'sudo npm install -g aws-cdk --save-dev'
     
     - name: CDK Bootstrap
       run : cdk bootstrap
