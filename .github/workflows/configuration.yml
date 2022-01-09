@@ -24,7 +24,6 @@ jobs:
           contentfulSpace: ${{ secrets.CONTENTFUL_SPACE_ID }}
       - run : |
           yarn
-          npm run setup
           npm run build
 
       - name: Configure AWS credentials for CDK
