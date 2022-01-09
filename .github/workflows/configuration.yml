@@ -24,8 +24,8 @@ jobs:
       - name: Build Website
         uses: actions/checkout@v2
         with: # Set the secret as an input
-        space_id: ${{ secrets.CONTENTFUL_SPACE_ID }}
-        management_api_key: ${{ secrets.CONTENTFUL_ACCESS_TOKEN}}
+          space_id: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          management_api_key: ${{ secrets.CONTENTFUL_ACCESS_TOKEN}}
 
       - run : |
           yarn
