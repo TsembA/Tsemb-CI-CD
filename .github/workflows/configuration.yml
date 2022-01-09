@@ -17,16 +17,11 @@ jobs:
           sudo apt update -y
           sudo apt install nodejs npm -y
 
-      - name: yarn install
+      - name: Build Website
         run : |
           yarn
-      
-      - name: Deploy Contentful
-        uses: actions/checkout@v2
-        env :
-          SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-          MANAGMENT_API_KEY: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-
+          npm run build
+          
       - name: Configure AWS credentials for CDK
         uses: aws-actions/configure-aws-credentials@v1
         with:
