@@ -19,27 +19,24 @@ jobs:
         SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
         AUTH_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
-    - name: Run build
-      run : npm build
-
-      - name: Configure AWS credentials for CDK
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-acces-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-central-1 
-        
-      - name: Install AWS CDK
-        run : 'sudo npm install -g aws-cdk'
+    - name: Configure AWS credentials for CDK
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-acces-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-central-1 
       
-      - name: CDK Bootstrap
-        run : cdk bootstrap
-        working-directory: cdk
+    - name: Install AWS CDK
+      run : 'sudo npm install -g aws-cdk'
+    
+    - name: CDK Bootstrap
+      run : cdk bootstrap
+      working-directory: cdk
 
-      - name: CDK Synth
-        run : cdk deploy
-        working-directory: cdk
+    - name: CDK Synth
+      run : cdk deploy
+      working-directory: cdk
 
-      - name: CDK Deploy
-        run : cdk deploy
-        working-directory: cdk
+    - name: CDK Deploy
+      run : cdk deploy
+      working-directory: cdk
