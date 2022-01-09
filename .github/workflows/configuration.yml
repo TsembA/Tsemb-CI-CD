@@ -19,12 +19,8 @@ jobs:
 
       - name: Configure Contentful credentials 
       - uses: actions/checkout@v2
-
-      - name: GH pages
-      - uses: TsembA/gatsby-gh-pages-action@v2.1.1
         with:
           accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-          deploy-branch: master          
         run : |
           yarn
           npm run build
