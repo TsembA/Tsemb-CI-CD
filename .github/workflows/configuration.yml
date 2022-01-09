@@ -16,15 +16,18 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt install nodejs npm -y
+          
       - name: Provide Contentful Credentials
       - uses: actions/checkout@v2
         with:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
+      - uses: actions/checkout@v2
       - name: Run setup
-        run : npm run setup
+        run : "npm run setup"
 
+      - uses: actions/checkout@v2  
       - name: Build Website
         run : |
           yarn
