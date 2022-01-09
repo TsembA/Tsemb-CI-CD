@@ -17,10 +17,10 @@ export class CdkStack extends cdk.Stack {
 
     // Deployment
     const src = new s3deploy.BucketDeployment(this, "DeployToS3", {
-      sources: [s3deploy.Source.asset("../Tsemb-CI-CD/public")],
+      sources: [s3deploy.Source.asset("../../public")],
       destinationBucket: bucket
     });
-
+    
 
     // Add CloudFront distribution
     const cf = new cloudfront.CloudFrontWebDistribution(this, "CloudFront", {
