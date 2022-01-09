@@ -19,7 +19,7 @@ jobs:
 
       - name: Configure Contentful credentials 
         uses: contentful/contentful-action@v1
-        env:
+        with:
           contentfulSpace: ${{ secrets.CONTENTFUL_SPACE_ID }}
           contentfulToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
