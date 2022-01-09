@@ -22,7 +22,7 @@ jobs:
         with:
           contentfulSpace: ${{ secrets.CONTENTFUL_SPACE_ID }}
           contentfulToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-        run : |
+      - run : |
           yarn
           npm run build
 
