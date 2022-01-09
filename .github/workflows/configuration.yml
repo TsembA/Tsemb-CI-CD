@@ -20,9 +20,8 @@ jobs:
       - name: Configure Contentful credentials 
         uses: contentful/contentful-action@v1
         env:
-          space_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-          managment_API_KEY: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}      
-          accessToken: ${{ secrets.CONTENT_MANAGMENT_API }}
+          contentfulSpace: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          contentfulToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
       - name: Bild Website
         run : |
