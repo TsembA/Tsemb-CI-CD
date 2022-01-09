@@ -19,9 +19,6 @@ jobs:
 
       - name: Configure Contentful credentials 
         uses: contentful/contentful-action@v1
-        with:
-          accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-          contentfulSpace: ${{ secrets.CONTENTFUL_SPACE_ID }}
       - run : |
           yarn
           npm run build
