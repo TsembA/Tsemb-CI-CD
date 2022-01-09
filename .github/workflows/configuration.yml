@@ -11,19 +11,9 @@ jobs:
     steps:
       
       - uses: actions/checkout@v2
-
-      - name: Install npm
-        run: |
-          sudo apt update -y
-          sudo apt install nodejs npm -y
-          
-      - name: Provide Contentful Credentials
-        uses: actions/checkout@v2
-
-
       - name: Build Website
-        uses: actions/checkout@v2
-      - run : |
+        run : |
+          yarn
           npm run build
           
       - name: Configure AWS credentials for CDK
