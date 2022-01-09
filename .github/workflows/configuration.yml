@@ -19,12 +19,14 @@ jobs:
           
       - name: Provide Contentful Credentials
         uses: actions/checkout@v2
-        env:
+
+
+      - name: Build Website
+        with: 
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
-      - name: Build Website
-        run : |
+      - run : |
           yarn
           npm run build
           
