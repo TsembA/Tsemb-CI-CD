@@ -38,11 +38,9 @@ jobs:
         sudo npm i aws-cdk-lib
         sudo npm i @aws-cdk/core
         sudo npm i @aws-cdk/aws-s3
-        sudo npm i @aws-cdk/aws-s3-deployment
         sudo npm i @aws-cdk/aws-cloudfront
-
       working-directory: cdk
-    
+
     - name: CDK Bootstrap
       run : cdk bootstrap
       working-directory: cdk
@@ -54,3 +52,6 @@ jobs:
     - name: CDK Deploy
       run : cdk deploy
       working-directory: cdk
+    
+    - name: Deploy to S3
+      run : aws s3 sync public s3://${{ secrets.AWS_BUCKET_NAME }} --delete
