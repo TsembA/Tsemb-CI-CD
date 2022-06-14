@@ -1,4 +1,5 @@
-name: Deploy CDK Build and Deploy Gatsby Website + Contentfull to S3
+name: Deploy CDK Build and Deploy Gatsby Website + Contentfull to S3 Bucket
+
 on:
   push:
     branches: [ main ]
@@ -7,46 +8,52 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      
-      - uses: actions/checkout@v2
+    steps:      
+    - uses: actions/checkout@v2
 
-      - name: Install npm
-        run: |
-          sudo apt update -y
-          sudo apt install nodejs npm -y
+    - name: Npm install
+      run : |
+        yarn
+        npm install -D
 
-      - name: Configure Contentful credentials 
+    - name: Build
+      run : sudo npm run build
+      env:
+        SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+        AUTH_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
+    - name: Configure AWS credentials for CDK
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-central-1 
 
-      - name: Bild Website
-        uses: contentful/contentful-action@v1
-        env:
-          space_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-          managment_API_KEY: ${{ secrets.CONTENT_MANAGMENT_API }}      
-          accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-      - run : |
-          yarn
-          npm run build
+    - name: install npm
+      run : 'sudo apt update -y && sudo apt install nodejs npm -y'
 
-      - name: Configure AWS credentials for CDK
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-acces-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-central-1 
-        
-      - name: Install AWS CDK
-        run : 'sudo npm install -g aws-cdk'
-      
-      - name: CDK Bootstrap
-        run : cdk bootstrap
-        working-directory: cdk
+    - name: Install AWS CDK
+      run : |
+        sudo npm i -g cdk
+        sudo npm i aws-cdk-lib
+        sudo npm i @aws-cdk/core
+        sudo npm i @aws-cdk/aws-s3
+        sudo npm i @aws-cdk/aws-cloudfront
+      working-directory: cdk
 
-      - name: CDK Synth
-        run : cdk deploy
-        working-directory: cdk
+    - name: CDK Bootstrap
+      run : cdk bootstrap
+      working-directory: cdk
 
-      - name: CDK Deploy
-        run : cdk deploy
-        working-directory: cdk
+    - name: CDK Synth
+      run : cdk deploy
+      working-directory: cdk
+
+    - name: CDK Deploy
+      run : cdk deploy
+      working-directory: cdk
+    
+    - name: Deploy to S3
+      run : aws s3 sync public s3://${{ secrets.AWS_BUCKET_NAME }} --delete
+    - name: Invalidate Cloudfront
+      run : aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --path "/*"
