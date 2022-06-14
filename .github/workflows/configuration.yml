@@ -6,7 +6,6 @@ on:
 
 jobs:
   build:
-    environment: build
     runs-on: ubuntu-latest
     steps:
       
@@ -22,7 +21,7 @@ jobs:
 
       - name: Bild Website
         uses: contentful/contentful-action@v1
-        with:
+        env:
           space_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           managment_API_KEY: ${{ secrets.CONTENT_MANAGMENT_API }}      
           accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
