@@ -2,7 +2,7 @@ name: Deploy CDK Build and Deploy Gatsby Website + Contentfull to S3 Bucket
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 
 jobs:
@@ -15,15 +15,12 @@ jobs:
       run : |
         yarn
         npm install -D
-    - name: Run Setup
-      run: npm run setup
-      env:
-        SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-        AUTH_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
     - name: Build
       run : sudo npm run build
-
+      env:
+        SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+        AUTH_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
     - name: Configure AWS credentials for CDK
       uses: aws-actions/configure-aws-credentials@v1
