@@ -19,8 +19,8 @@ jobs:
     - name: Build
       run : sudo npm run build
       env:
-        SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-        AUTH_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+        spaceId: ${{ secrets.CONTENTFUL_SPACE_ID }}
+        accessToken: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
     - name: Configure AWS credentials for CDK
       uses: aws-actions/configure-aws-credentials@v1
